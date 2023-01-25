@@ -1,14 +1,17 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {Button, TextField} from "@mui/material";
 import {create} from "./presenter";
-import axios from "axios";
 
-const Form = () => {
+
+const Form = (props) => {
     const [createTask, setCreateTask] = useState('')
 
     const createF = () => {
         create({name: createTask})
+        props.observer()
+        setCreateTask('')
     }
+
     return (
         <>
             <TextField value={createTask} onChange={e => setCreateTask(e.target.value)}
